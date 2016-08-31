@@ -1,14 +1,16 @@
-name := "fm-sbt-s3-resolver"
+name := "sbt-s3-resolver"
 
-organization := "com.frugalmechanic"
+organization := "com.tianhao"
 
-version := "0.10.0-SNAPSHOT"
+version := "0.10.0"
+
+scalaVersion := "2.11.8"
 
 description := "SBT S3 Resolver Plugin"
 
 licenses := Seq("Apache License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
-homepage := Some(url("https://github.com/frugalmechanic/sbt-s3-resolver"))
+homepage := Some(url("https://github.com/ysihaoy/fm-sbt-s3-resolver"))
 
 sbtPlugin := true
 

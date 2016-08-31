@@ -202,24 +202,10 @@ final class S3URLHandler extends URLHandler {
   }
   
   private val credentialsCache: ConcurrentHashMap[String,AWSCredentials] = new ConcurrentHashMap()
-  
+
   def getCredentials(bucket: String): AWSCredentials = {
-    var credentials: AWSCredentials = credentialsCache.get(bucket)
-    
-    if (null == credentials) {
-      credentials = try {
-        makeCredentialsProviderChain(bucket).getCredentials()
-      } catch {
-        case ex: com.amazonaws.AmazonClientException => 
-          Message.error("Unable to find AWS Credentials.")
-          throw ex
-      }
-      
-      Message.info("S3URLHandler - Using AWS Access Key Id: "+credentials.getAWSAccessKeyId+" for bucket: "+bucket)
-      
-      credentialsCache.put(bucket, credentials)
-    }
-    
+    val chain = new DefaultAWSCredentialsProviderChain()
+    val credentials = chain.getCredentials
     credentials
   }
 
